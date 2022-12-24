@@ -16,11 +16,30 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+    <!-- Following script of adding elements to React should be 
+        written after adding scripts by React cdn -->
     <script>
-      const heading = document.createElement("h1");
-      heading.innerHTML = "Hello Saily Welcome!";
-      const root = document.getElementById("root");
-      root.appendChild(heading);
+      // const heading = document.createElement("h1");
+      //   heading.innerHTML = "Hello Saily Welcome!";
+
+      // creating Element using React
+      const heading = React.createElement(
+        "h1",
+        { id: "heading" },
+        "Hello Saily Welcome!"
+      );
+
+      //   js: pointing to the div with id 'root'
+      //   const root = document.getElementById("root");
+
+      //   creating root using React dom
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      // js: appending heading to root id element
+      //   root.appendChild(heading);
+
+      // appending heading to root element using React
+      root.render(heading);
     </script>
   </body>
 </html>
