@@ -8,6 +8,7 @@
   </head>
   <body>
     <div id="root"></div>
+
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -16,30 +17,34 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
-    <!-- Following script of adding elements to React should be 
-        written after adding scripts by React cdn -->
     <script>
-      // const heading = document.createElement("h1");
-      //   heading.innerHTML = "Hello Saily Welcome!";
-
-      // creating Element using React
-      const heading = React.createElement(
+      const heading1 = React.createElement(
         "h1",
-        { id: "heading" },
-        "Hello Saily Welcome!"
+        {
+          id: "title1",
+        },
+        "Heading 1"
       );
 
-      //   js: pointing to the div with id 'root'
-      //   const root = document.getElementById("root");
+      const heading2 = React.createElement(
+        "h2",
+        {
+          id: "title2",
+          className: "class2",
+        },
+        "Heading 2"
+      );
 
-      //   creating root using React dom
+      const container = React.createElement(
+        "div",
+        {
+          id: "container",
+        },
+        [heading1, heading2]
+      );
       const root = ReactDOM.createRoot(document.getElementById("root"));
 
-      // js: appending heading to root id element
-      //   root.appendChild(heading);
-
-      // appending heading to root element using React
-      root.render(heading);
+      root.render(container);
     </script>
   </body>
 </html>
