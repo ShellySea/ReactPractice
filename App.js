@@ -11,6 +11,10 @@ const heading2 = React.createElement(
   {
     id: "title2",
     className: "class2",
+    style: {
+      border: '1px solid red'
+    },
+    kuchBhi: 'anything'
   },
   "Heading 2"
 );
