@@ -1,36 +1,81 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+/**
+ Layout
+ Header
+  - Logo
+  - NavList (right side)
+    - About
+    - Contact
+    - Cart
+ Body
+  - Search Bar
+  - Restaurant Card
+    - Image
+    - Name
+    - Rating
+ Footer
+  - Links
+  - Copyright
+ */
 
-/* React element */
-const Title = (
-  <h1 className="h3" key="head3">React Element</h1>
+const Logo = (
+  <img className="logo" 
+  src="https://png.pngtree.com/element_our/png/20180823/health-restaurant-logo-design-template-vector-png_62798.jpg" 
+  alt="logo"></img>
 )
 
-/* React component - Normal JS function*/
-const Comp = () => {
+const HeaderComp = () => {
   return (
-    <div>
-      <h3>Component Composition</h3>
+    <div className="header">
+      {Logo}
+      <ul className="navItems">
+        <li>Contact</li>
+        <li>About</li>
+        <li>Cart</li>
+      </ul>
     </div>
   )
 }
 
-/* React Component: std convention to write its name is by starting with capital letter */
-/* using react element inside react component using {} */
-/* COMPONENT COMPOSITION : Using react component inside react component using </> or {Nameofcomp()} */
-const HeaderComponent1 = () => {
+
+/* 2 ways of applyling the style */
+const stylingBody = {
+  border: '1px solid pink',
+}
+
+const BodyComp = () => {
+  return (
+    <div style={stylingBody}>
+      <h3 style={{color: 'red'}}>Body</h3>
+    </div>
+  )
+}
+
+const FooterComp = () => {
   return (
     <div>
-      {Title}
-      <Comp/> 
-      {Comp()}
-      <h1>Heading 1</h1>
-      <h1>Heading 2</h1>
+      <h3>Footer</h3>
     </div>
+  )
+}
+
+/* Instead of <React.Fragment>...</React.Fragment> we can just put <>...</> */
+const AppLayout = () => {
+  return (
+    <React.Fragment>
+      <HeaderComp/>
+      <BodyComp/>
+      <FooterComp/>
+    </React.Fragment>
   )
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeaderComponent1/>);
+root.render(<AppLayout/>);
+
+/*or
+root.render({AppLayout()});
+*/
