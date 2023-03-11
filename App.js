@@ -907,13 +907,12 @@ const BodyComp = () => {
     <div className="restaurants">
     {
       restList.map(detail => {
-      return <Restaurant {...detail.data}/>
+      return <Restaurant {...detail.data} key={detail.data.id} hello="world"/>
     })
     }
     </div>
   )
 }
-
 
 /* 
   Instead of passing detail.data everytime for every detail required like img,name,dist, etc,
@@ -924,7 +923,7 @@ const BodyComp1 = () => {
     <div className="restaurants">
       {
         restList.map(detail => {
-          return Restaurant({...detail.data});
+          return Restaurant1({...detail.data});
         })
       }
     </div>
@@ -945,7 +944,7 @@ const AppLayout = () => {
   return (
     <React.Fragment>
       <HeaderComp/>
-      <BodyComp1/>
+      <BodyComp/>
       <FooterComp/>
     </React.Fragment>
   )
@@ -980,4 +979,19 @@ root.render({AppLayout()});
  * Hence if we add UNIQUE KEYS to all those divs, then if newly added div which will again have a unique key
  * will come to know that this is the newly added div and only render that div instead of rerendering the entire
  * list of divs (old + new ) again. 
+ * But if we have 3 divs already in a DOM and we are then adding one img tag at the first position then 
+ * react will not have that issue to rebuild the entire DOM because the react identifies the new element by its TAG.
+ * 
+ * 
+ * We don’t recommend using indexes for keys:
+ * Read Source: https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/
+ */
+
+/**
+ * React Fiber - New Reconciliation Engine which came in React 16 and this is responsible for diff
+ * Read Source: https://github.com/acdlite/react-fiber-architecture
+ */
+
+/**
+ * Showing or hiding things as per its requirement is called Config Driven UI 
  */
