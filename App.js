@@ -882,12 +882,12 @@ const restList = [
   }
 ]
 
-const Restaurant = () => {
+const Restaurant = (props) => {
   return (
   <div className="restCard">
       <img src={
         "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"
-        +restList[1].data.cloudinaryImageId}
+        +props.restImg}
          alt="img"/>
       <h2>{restList[1].data.name}</h2>
       <h3>{restList[1].data.cuisines.join(', ')}</h3>
@@ -899,7 +899,7 @@ const Restaurant = () => {
 const BodyComp = () => {
   return (
     <div className="restaurants">
-    <Restaurant/>
+    <Restaurant restImg={restList[1].data.cloudinaryImageId}/>
     <Restaurant/>
     <Restaurant/>
     <Restaurant/>
