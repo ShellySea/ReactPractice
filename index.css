@@ -18,3 +18,20 @@
 ul > li {
   padding: 10px;
 }
+
+.restCard {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.restCard > img {
+  width: 100%;
+}
+
+.restaurants {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content:space-evenly; */
+}
