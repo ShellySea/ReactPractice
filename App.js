@@ -884,8 +884,6 @@ const restList = [
 
 /* Destructuring at the parameter level  */
 const Restaurant = ({cloudinaryImageId, name, cuisines, lastMileTravelString}) => {
-  // again destructuring for clean code 
-  // const {cloudinaryImageId, name, cuisines, lastMileTravelString} = restData.data;
   return (
     <div className="restCard">
       <img src={
@@ -901,29 +899,33 @@ const Restaurant = ({cloudinaryImageId, name, cuisines, lastMileTravelString}) =
 
 
 /* 
-* if destructuring at parameter level above, we have to add those individually as a attribute to Restaurant function
+  Instead of passing detail.data everytime for every detail required like img,name,dist, etc,
+ we can use Rest operator by passing it as argument and make the code more cleaner
 */
 const BodyComp = () => {
   return (
     <div className="restaurants">
     {
       restList.map(detail => {
-      return <Restaurant 
-      cloudinaryImageId={detail.data.cloudinaryImageId} 
-      name={detail.data.name}
-      lastMileTravelString={detail.data.lastMileTravelString}
-      cuisines={detail.data.cuisines}/>
+      return <Restaurant {...detail.data}/>
     })
     }
     </div>
   )
 }
 
+
+/* 
+  Instead of passing detail.data everytime for every detail required like img,name,dist, etc,
+ we can use Rest operator by passing it as argument and make the code more cleaner
+*/
 const BodyComp1 = () => {
   return (
     <div className="restaurants">
       {
-        restList.map(detail => Restaurant(detail))
+        restList.map(detail => {
+          return Restaurant({...detail.data});
+        })
       }
     </div>
   )
@@ -943,7 +945,7 @@ const AppLayout = () => {
   return (
     <React.Fragment>
       <HeaderComp/>
-      <BodyComp/>
+      <BodyComp1/>
       <FooterComp/>
     </React.Fragment>
   )
