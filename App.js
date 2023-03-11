@@ -958,3 +958,26 @@ root.render(<AppLayout/>);
 /*or
 root.render({AppLayout()});
 */
+
+
+/** 
+ * VIRTUAL DOM:
+ * Representation of DOM with us is Virtual DOM. 
+ * Need of Virtual DOM: For reconciliation in React
+ * Reconciliation is an algorithmn that React uses to diff one tree from other and 
+ * it determines what needs to change in UI and what doesnot need to change
+ * In simple terms, it uses diff algorithm to find out the difference between both the trees
+ * i.e the actual DOM tree and Virtual DOM tree and then finds ot what needs to be updated and 
+ * just updates that small portion (part of the app) rather than rebuilding the entire tree (whole app) all over again and 
+ * therefore its fast and thats why we say because of Virtual DOM our React performs fast. 
+ */
+
+/**
+ * Importance of Key:
+ * If there are 3 divs already in a DOM and we are then adding one more div at the first position of those already
+ * present divs. Then since all are divs, react will not know which one is new div and hence
+ * rerender all the divs again, impacting the performance making it slow.
+ * Hence if we add UNIQUE KEYS to all those divs, then if newly added div which will again have a unique key
+ * will come to know that this is the newly added div and only render that div instead of rerendering the entire
+ * list of divs (old + new ) again. 
+ */
