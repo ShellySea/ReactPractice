@@ -884,16 +884,17 @@ const restList = [
 
 /* Instead of passing props as the parameter directly using 'restData' as destructuring the object  */
 const Restaurant = ({restData}) => {
-  // console.log(props);
+  // again destructuring for clean code 
+  const {cloudinaryImageId, name, cuisines, lastMileTravelString} = restData.data;
   return (
     <div className="restCard">
       <img src={
         "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"
-        +restData?.data.cloudinaryImageId}
+        +cloudinaryImageId}
          alt="img"/>
-      <h2>{restData?.data.name}</h2>
-      <h3>{restData?.data.cuisines.join(', ')}</h3>
-      <h4>{restData?.data.lastMileTravelString}</h4>
+      <h2>{name}</h2>
+      <h3>{cuisines.join(', ')}</h3>
+      <h4>{lastMileTravelString}</h4>
   </div>
   )
 }
