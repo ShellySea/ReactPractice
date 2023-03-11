@@ -882,19 +882,18 @@ const restList = [
   }
 ]
 
-/* Catching the function call in the BodyComp as 'props' in the form of parameter  */
-const Restaurant = (props) => {
-  console.log('p')
-  console.log(props);
+/* Instead of passing props as the parameter directly using 'restData' as destructuring the object  */
+const Restaurant = ({restData}) => {
+  // console.log(props);
   return (
     <div className="restCard">
       <img src={
         "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"
-        +props.restData?.data.cloudinaryImageId}
+        +restData?.data.cloudinaryImageId}
          alt="img"/>
-      <h2>{props.restData?.data.name}</h2>
-      <h3>{props.restData?.data.cuisines.join(', ')}</h3>
-      <h4>{props.restData?.data.lastMileTravelString}</h4>
+      <h2>{restData?.data.name}</h2>
+      <h3>{restData?.data.cuisines.join(', ')}</h3>
+      <h4>{restData?.data.lastMileTravelString}</h4>
   </div>
   )
 }
@@ -909,9 +908,7 @@ const BodyComp = () => {
   return (
     <div className="restaurants">
     {
-      restList.map(detail => {
-        return <Restaurant restData={detail} />
-      })
+      restList.map(detail => <Restaurant restData={detail} />)
     }
     </div>
   )
