@@ -882,10 +882,10 @@ const restList = [
   }
 ]
 
-/* Instead of passing props as the parameter directly using 'restData' as destructuring the object  */
-const Restaurant = ({restData}) => {
+/* Destructuring at the parameter level  */
+const Restaurant = ({cloudinaryImageId, name, cuisines, lastMileTravelString}) => {
   // again destructuring for clean code 
-  const {cloudinaryImageId, name, cuisines, lastMileTravelString} = restData.data;
+  // const {cloudinaryImageId, name, cuisines, lastMileTravelString} = restData.data;
   return (
     <div className="restCard">
       <img src={
@@ -900,16 +900,20 @@ const Restaurant = ({restData}) => {
 }
 
 
-/* Passing restList as a argument to Restaurant function 
-* 2 ways of calling Restaurant function. 
-* First one in BodyComp using attribute 'restData' and assigning the 'detail' to it as argument
-* & second in BodyComp1 using function call and passing the 'detail' as argument
+/* 
+* if destructuring at parameter level above, we have to add those individually as a attribute to Restaurant function
 */
 const BodyComp = () => {
   return (
     <div className="restaurants">
     {
-      restList.map(detail => <Restaurant restData={detail} />)
+      restList.map(detail => {
+      return <Restaurant 
+      cloudinaryImageId={detail.data.cloudinaryImageId} 
+      name={detail.data.name}
+      lastMileTravelString={detail.data.lastMileTravelString}
+      cuisines={detail.data.cuisines}/>
+    })
     }
     </div>
   )
