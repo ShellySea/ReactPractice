@@ -883,7 +883,6 @@ const restList = [
 ]
 
 const Restaurant = (props) => {
-  console.log(props);
   return (
     <div className="restCard">
       <img src={
@@ -897,15 +896,15 @@ const Restaurant = (props) => {
   )
 }
 
+/* Looping using map function */
 const BodyComp = () => {
   return (
     <div className="restaurants">
-    <Restaurant restData={restList[0]} />
-    <Restaurant restData={restList[1]} />
-    <Restaurant restData={restList[2]} />
-    <Restaurant restData={restList[3]} />
-    <Restaurant restData={restList[4]} />
-    <Restaurant restData={restList[5]} />
+    {
+      restList.map((detail) => {
+        return <Restaurant restData={detail} />
+      })
+    }
     </div>
   )
 }
