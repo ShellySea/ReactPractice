@@ -1,10 +1,11 @@
-import { restList } from "../config";
 import Restaurant from "./RestaurantCard";
-import { useState } from "react";
-import { restList } from "../config";
+import { useEffect, useState } from "react";
+import ShimmerUI from "./ShimmerUI";
 
 function filterData(searchText, restaurants) {
-  return restaurants.filter((res) => res.data.name.includes(searchText));
+  return restaurants.filter((res) =>
+    res.data.name.toLowerCase().includes(searchText.toLowerCase())
+  );
 }
 
 const BodyComp = () => {
@@ -12,11 +13,35 @@ const BodyComp = () => {
   // const searchText = 'Jhama';
 
   // Declaring and Assigning variable to a value in React:
-  const [searchText, setSearchText] = useState("Jhama");
+  const [searchText, setSearchText] = useState();
+  const [searchResult, setSearchResult] = useState(false);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-  const [restaurants, setRestaurants] = useState(restList);
+  async function getRestaurants() {
+    let data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0790239&lng=72.9080122&page_type=DESKTOP_WEB_LISTING"
+    );
+    const convJson = await data.json();
+    setAllRestaurants(convJson?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurants(convJson?.data?.cards[2]?.data?.data?.cards);
+  }
 
-  return (
+  useEffect(() => {
+    getRestaurants();
+    console.log("call effect");
+  }, []);
+
+  // Early return or optional chaining
+  if (!allRestaurants) return null;
+
+  // if (allRestaurants?.length !== 0 && filteredRestaurants.length === 0)
+  //   return <h3>No Restaurants Found!</h3>;
+
+  // Conditional Rendering for loader
+  return allRestaurants?.length === 0 ? (
+    <ShimmerUI />
+  ) : (
     <>
       <div className="searchBar">
         <input
@@ -30,20 +55,19 @@ const BodyComp = () => {
         &nbsp;
         <button
           onClick={() => {
-            const data = filterData(searchText, restaurants);
-            console.log(searchText);
-            setRestaurants(data);
-            if (searchText === "") {
-              setRestaurants(restList);
-            }
+            const data = filterData(searchText, allRestaurants);
+            data.length === 0
+              ? setSearchResult("true")
+              : setSearchResult("false");
+            setFilteredRestaurants(data);
           }}
         >
           Search
         </button>
-        <span>{searchText}</span>
       </div>
+      {searchResult === "true" ? <h3>No Restaurants Found!</h3> : null}
       <div className="restaurants">
-        {restaurants.map((detail) => {
+        {filteredRestaurants.map((detail) => {
           return <Restaurant {...detail.data} key={detail.data.id} />;
         })}
       </div>
@@ -51,22 +75,8 @@ const BodyComp = () => {
   );
 };
 
-/* 
-    Instead of passing detail.data everytime for every detail required like img,name,dist, etc,
-   we can use Rest operator by passing it as argument and make the code more cleaner
-  */
-const BodyComp1 = () => {
-  return (
-    <div className="restaurants">
-      {restList.map((detail) => {
-        return Restaurant({ ...detail.data });
-      })}
-    </div>
-  );
-};
-
 /** Exporting multiple things then we cannot use default
  * Default is used when only 1 export is made
  * Also while exporting multiple, then import using : import {BodyComp, BodyComp1}
  */
-export { BodyComp, BodyComp1 };
+export { BodyComp };

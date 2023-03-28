@@ -10,6 +10,10 @@
   border: 1px solid #000;
 }
 
+.searchBar {
+  margin: 10px;
+}
+
 .navItems {
   list-style-type: none;
   display: flex;
