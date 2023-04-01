@@ -2,25 +2,33 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComp from "./components/Header.js";
 import FooterComp from "./components/Footer.jsx"; // default import
-import { BodyComp, BodyComp1 } from "./components/Body"; // named import and importing multiple things
-import * as Obj from "./components/Body"; // Importing multiple things
+import { BodyComp } from "./components/Body"; // named import and importing multiple things
+import About from "./components/About.js";
+import Error from "./components/Error.js";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const AppLayout = () => {
   return (
     <>
       <HeaderComp />
-      {/* <Obj.BodyComp /> */}
       <BodyComp />
       <FooterComp />
     </>
   );
 };
 
+const appRoutes = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout />);
-
-/**
- * I can name my file as jsx
- * I can import using ./component/Header.js or ./component/Header.jsx or ./component/Header
- */
+root.render(<RouterProvider router={appRoutes} />);

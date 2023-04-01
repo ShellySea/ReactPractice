@@ -4,7 +4,7 @@ import ShimmerUI from "./ShimmerUI";
 
 function filterData(searchText, restaurants) {
   return restaurants.filter((res) =>
-    res.data.name.toLowerCase().includes(searchText.toLowerCase())
+    res?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
   );
 }
 
@@ -32,7 +32,7 @@ const BodyComp = () => {
     console.log("call effect");
   }, []);
 
-  // Early return or optional chaining
+  // Early return
   if (!allRestaurants) return null;
 
   // if (allRestaurants?.length !== 0 && filteredRestaurants.length === 0)
