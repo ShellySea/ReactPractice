@@ -1,9 +1,6 @@
 import { Logo } from "./Logo";
 import { useState } from "react";
-
-function loggedInUser() {
-  return true;
-}
+import { Link } from "react-router-dom";
 
 const HeaderComp = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -11,9 +8,15 @@ const HeaderComp = () => {
     <div className="header">
       {Logo}
       <ul className="navItems">
-        <li>Contact</li>
-        <li>About</li>
-        <li>Cart</li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/cart">Cart</Link>
+        </li>
       </ul>
       {isLoggedIn ? (
         <button

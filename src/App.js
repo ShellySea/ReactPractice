@@ -4,6 +4,8 @@ import HeaderComp from "./components/Header.js";
 import FooterComp from "./components/Footer.jsx"; // default import
 import { BodyComp } from "./components/Body"; // named import and importing multiple things
 import About from "./components/About.js";
+import Contact from "./components/Contact.js";
+import Cart from "./components/Cart.js";
 import Error from "./components/Error.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -26,6 +28,14 @@ const appRoutes = createBrowserRouter([
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
   },
 ]);
 
