@@ -6,7 +6,7 @@ const HeaderComp = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   return (
     <div className="header">
-      {Logo}
+      <Link to="/">{Logo}</Link>
       <ul className="navItems">
         <li>
           <Link to="/contact">Contact</Link>

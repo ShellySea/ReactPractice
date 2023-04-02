@@ -7,13 +7,13 @@ import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Cart from "./components/Cart.js";
 import Error from "./components/Error.js";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 const AppLayout = () => {
   return (
     <>
       <HeaderComp />
-      <BodyComp />
+      <Outlet></Outlet>
       <FooterComp />
     </>
   );
@@ -24,14 +24,20 @@ const appRoutes = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     errorElement: <Error />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
+    children: [
+      {
+        path: "/",
+        element: <BodyComp />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+    ],
   },
   {
     path: "/cart",
