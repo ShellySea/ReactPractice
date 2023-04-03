@@ -1,6 +1,7 @@
 import Restaurant from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, restaurants) {
   return restaurants.filter((res) =>
@@ -29,7 +30,6 @@ const BodyComp = () => {
 
   useEffect(() => {
     getRestaurants();
-    console.log("call effect");
   }, []);
 
   // Early return
@@ -67,8 +67,13 @@ const BodyComp = () => {
       </div>
       {searchResult === "true" ? <h3>No Restaurants Found!</h3> : null}
       <div className="restaurants">
+        {console.log(filteredRestaurants)}
         {filteredRestaurants.map((detail) => {
-          return <Restaurant {...detail.data} key={detail.data.id} />;
+          return (
+            <Link to={"/restaurant/" + detail.data?.id}>
+              <Restaurant {...detail.data} key={detail.data?.id} />
+            </Link>
+          );
         })}
       </div>
     </>

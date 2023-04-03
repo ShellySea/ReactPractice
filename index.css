@@ -24,7 +24,7 @@ ul > li {
 }
 
 .restCard {
-  width: 200px;
+  width: 224px;
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
@@ -82,8 +82,18 @@ article .shimmer{
 }
 
 .shimmer-card {
-	width: 200px;
+	width: 224px;
 	height: 200px;
 	background-color: lightgray;
 	margin: 20px;
 }
+
+.recommended-menu-img {
+	width: 224px;
+	height: 200px;
+}
+
+.flex-end {
+	display: flex;
+	justify-content: flex-end;
+  }
