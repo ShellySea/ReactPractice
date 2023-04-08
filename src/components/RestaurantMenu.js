@@ -33,6 +33,11 @@ const RestaurantMenu = () => {
     navigate(-1);
   }
 
+  function replaceImg(error) {
+    error.target.src =
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fimg&psig=AOvVaw3ARQJsVJl7O44lOJaI8foV&ust=1681058181214000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCICF9-_bmv4CFQAAAAAdAAAAABAE";
+  }
+
   return !restaurant || recommendedMenu?.length === 0 ? (
     <ShimmerUI />
   ) : (
@@ -58,6 +63,7 @@ const RestaurantMenu = () => {
                 <img
                   className="recommended-menu-img"
                   src={IMG_CDN_URL + detail.card.info?.imageId}
+                  onError={replaceImg}
                 />
               </li>
             );
