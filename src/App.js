@@ -10,6 +10,7 @@ import Error from "./components/Error.js";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import LoginPage from "./components/Login.js";
+import ProfileFunction from "./components/ProfileFunc.js";
 
 const AppLayout = () => {
   return (
@@ -38,6 +39,12 @@ const appRoutes = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <ProfileFunction />,
+          },
+        ],
       },
       {
         path: "/contact",
