@@ -11,6 +11,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import LoginPage from "./components/Login.js";
 import ProfileFunction from "./components/ProfileFunc.js";
+import ProfileClass from "./components/ProfileClass.js";
 
 const AppLayout = () => {
   return (
@@ -41,8 +42,12 @@ const appRoutes = createBrowserRouter([
         element: <About />,
         children: [
           {
-            path: "profile",
+            path: "profilefunc",
             element: <ProfileFunction />,
+          },
+          {
+            path: "profileclass",
+            element: <ProfileClass />,
           },
         ],
       },
